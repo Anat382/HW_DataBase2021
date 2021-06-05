@@ -1,43 +1,33 @@
 
 
 --__________________________________#____________________________#__________________________________#_______________________________
--- ˜˜˜˜˜˜˜ ˜˜˜˜ ˜˜˜˜˜˜ [DataBase2021]
+-- Create DB  [DataBase2021]
 --/////////////////////////////////////////////
 
 USE master;
-CREATE DATABASE [DataBase2021] --- COLLATE Cyrillic_General ˜˜˜˜˜ ˜˜˜˜˜˜˜˜ ˜˜˜ ˜˜˜˜˜˜˜
+CREATE DATABASE [DataBase2021] --- COLLATE Cyrillic_General can to change UNICOD
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = DataBase2021, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021.mdf' ,  -- ˜˜˜˜˜ ˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜ ˜˜˜˜˜
-	SIZE = 500MB , --- ˜˜˜˜˜˜˜˜ ˜˜ ˜˜˜˜˜˜˜˜˜
+( NAME = DataBase2021, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021.mdf' ,  
+	SIZE = 500MB , 
 	MAXSIZE = UNLIMITED, 
 	FILEGROWTH = 100MB )
  LOG ON 
-( NAME = DataBase2021_log, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021_log.ldf' ,  --- ˜˜˜˜˜˜ ˜˜˜˜˜
+( NAME = DataBase2021_log, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021_log.ldf' ,  
 	SIZE = 500MB , 
 	MAXSIZE = 1GB , 
 	FILEGROWTH = 100MB  )
 GO
 
----  *** ˜˜˜ ˜˜˜˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜ 
+---  *** Can drop table
 --USE master; 
 --GO 
 --IF DB_ID (N'DataBase2021') IS NOT NULL 
 --	DROP DATABASE DataBase2021; 
 --GO 
 
---˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜˜˜˜
---˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜
---˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜
---˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜˜˜
---˜˜˜˜˜˜˜˜˜˜ ˜˜˜ ˜˜ ˜˜˜˜˜˜ (˜˜˜˜˜˜˜˜˜˜˜ ˜˜˜)
---˜˜˜˜˜˜˜˜˜
---˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜
---˜˜˜˜˜˜ ˜˜˜˜˜˜˜
---˜˜˜˜˜˜˜ ˜˜˜˜˜˜
 
-
------- ˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜ ˜ ˜˜ ˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜
+------ loaded initial  table to stage level
 --SELECT * FROM [dbo].[Contact]
 --SELECT * FROM [dbo].[Deal]
 --SELECT * FROM [dbo].[EMAIL]
@@ -47,8 +37,8 @@ GO
 --SELECT * FROM [dbo].[TypeProduct]
 --SELECT * FROM [dbo].[WORK_POSITION]
 
---CREATE SCHEMA Sales  -- ˜˜˜ ˜˜˜˜˜˜
---CREATE SCHEMA Prod  -- ˜˜˜˜˜˜˜˜˜˜˜ ˜˜˜
+--CREATE SCHEMA Sales  -- ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+--CREATE SCHEMA Prod  -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 
 --SELECT CONCAT( COLUMN_NAME, ' ', DATA_TYPE, IIF( CHARACTER_MAXIMUM_LENGTH IS NULL, '', CONCAT('(',CHARACTER_MAXIMUM_LENGTH,'),') ) )
@@ -56,9 +46,9 @@ GO
 --WHERE TABLE_NAME = 'Lead'
 
 --________________________________________________________________________________________________________________________
----------- ˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜
+---------- Create table
 
----- ˜˜˜˜˜˜ -----
+---- Region -----
 DROP TABLE IF EXISTS  Sales.Region
 CREATE TABLE Sales.Region(
 	ID    int			not null identity(1, 1)  primary key,
@@ -71,7 +61,7 @@ INSERT INTO Sales.Region ( Name)
 SELECT * FROM  Sales.Region
 
 --=======================================
----- ˜˜˜˜˜˜˜ -----
+---- Customers -----
 DROP TABLE IF EXISTS  Sales.Customers
 CREATE TABLE Sales.Customers(
 	ID			int				not null identity(1, 1)  primary key,
@@ -155,7 +145,7 @@ INSERT INTO Prod.Job ( NAme)
 SELECT * FROM Prod.Job
 
 --============================================================
----- ˜˜˜˜ -----
+---- Price -----
 DROP TABLE IF EXISTS  Sales.Price
 CREATE TABLE Sales.Price(
 	ID		int		not null identity  primary key,
@@ -177,7 +167,7 @@ SELECT * FROM Sales.Price
 --TRUNCATE TABLE Sales.Price
 
 --===================================================================
----- ˜˜˜˜ ˜˜˜˜˜ -----
+---- Types Of Services -----
 DROP TABLE IF EXISTS  Sales.TypesOfServices
 CREATE TABLE  Sales.TypesOfServices(
 	ID		int			 not null identity  primary key,
@@ -209,7 +199,7 @@ SELECT  * FROM Sales.TypesOfServices
 --TRUNCATE TABLE Sales.TypesOfServices
 
 --===================================================================
-----  ˜˜˜˜˜˜˜˜˜ -----
+----  Source -----
 DROP TABLE IF EXISTS  Sales.Source
 CREATE TABLE  Sales.Source(
 	ID	 int		  not null identity(1, 1)  primary key,
@@ -224,7 +214,7 @@ INSERT INTO Sales.Source ( Name)
 SELECT * FROM Sales.Source
 
 --=================================================================
-----  ˜˜˜˜˜˜˜ -----
+----  Status -----
 DROP TABLE IF EXISTS  Prod.Status
 CREATE TABLE   Prod.Status(
 	ID	 int		  not null identity(1, 1)  primary key,
@@ -233,15 +223,15 @@ CREATE TABLE   Prod.Status(
 )
 
 INSERT INTO Prod.Status ( Name, Type)
-	VALUES ( '˜˜˜˜', 'Lead'),
-		   ('˜˜˜˜˜˜˜˜˜˜˜˜˜˜', 'Lead'),
-		   ('˜˜˜˜˜˜˜˜˜˜', 'Deal'),
-		   ('˜ ˜˜˜˜˜˜', 'Deal')
+	VALUES ( 'ï¿½ï¿½ï¿½ï¿½', 'Lead'),
+		   ('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'Lead'),
+		   ('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'Deal'),
+		   ('ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'Deal')
 
 SELECT * FROM  Prod.Status
 
 --=================================================================
------- ˜˜˜˜˜˜˜˜ -----
+------ Employee -----
 DROP TABLE IF EXISTS  Prod.Employee
 CREATE TABLE Prod.Employee(
 	ID					int			 not null identity(1, 1)  primary key,
@@ -255,7 +245,7 @@ CREATE TABLE Prod.Employee(
 	BIRTHDAY			date		 not null
 )
 
---SELECT FLOOR(RAND()*(15-5)+5); --- ˜˜˜˜˜˜
+--SELECT FLOOR(RAND()*(15-5)+5); --- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 --SELECT * FROM [dbo].[Emploee]
 
 --UPDATE [dbo].[Emploee] SET ID = c2.[Row]
@@ -282,10 +272,10 @@ WHILE @cc <= @Emploee
 		 DATEADD( day, FLOOR(RAND()*(3650-100)+100), '19850101')
 		 FROM [dbo].[Emploee] e
 		 OUTER APPLY (
-			SELECT TOP 1 Gender , NAME FROM ( VALUES (1, '˜˜˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜'), (1, '˜˜˜˜˜'), (1, '˜˜˜˜˜'), (1, '˜˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜'), (1, '˜˜˜˜˜˜˜'),
-				(1, '˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜˜˜˜˜'), (0, '˜˜˜˜˜˜˜'), (0, '˜˜˜˜'), (0, '˜˜˜˜˜˜˜˜'), (1, '˜˜˜˜˜'), (0, '˜˜˜˜˜'), (1, '˜˜˜˜˜') 
+			SELECT TOP 1 Gender , NAME FROM ( VALUES (1, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½'), (1, 'ï¿½ï¿½ï¿½ï¿½ï¿½'), (1, 'ï¿½ï¿½ï¿½ï¿½ï¿½'), (1, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (1, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'),
+				(1, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'), (1, 'ï¿½ï¿½ï¿½ï¿½ï¿½'), (0, 'ï¿½ï¿½ï¿½ï¿½ï¿½'), (1, 'ï¿½ï¿½ï¿½ï¿½ï¿½') 
 					) d(Gender, Name)
-			WHERE IIF( RIGHT(e.SECOND_NAME,1) = '˜',1,0)=Gender
+			WHERE IIF( RIGHT(e.SECOND_NAME,1) = 'ï¿½',1,0)=Gender
 			ORDER BY  NEWID()
 			) n 
 		 WHERE e.ID = @cc 
@@ -306,7 +296,7 @@ WHERE TABLE_NAME = 'Employee'
 AND TABLE_SCHEMA = 'Prod'
 
 --=====================================================================
------- ˜˜˜˜˜˜ -----
+------ Lead -----
 DROP TABLE IF EXISTS  Sales.Lead
 CREATE TABLE Sales.Lead(
 	Lead_ID		int			not null identity(1, 1)  primary key,
@@ -358,7 +348,7 @@ WHERE TABLE_NAME = 'Lead'
 AND TABLE_SCHEMA = 'Sales'
 
 --==================================================================================
------- ˜˜˜˜˜˜ -----
+------ Deal -----
 DROP TABLE IF EXISTS  Sales.Deal
 CREATE TABLE Sales.Deal(
 	Deal_ID		int			not null identity(1, 1) primary key,
@@ -430,7 +420,7 @@ AND TABLE_SCHEMA = 'Sales'
 
 
 --===================================================================================
------ ˜˜˜˜˜˜˜˜˜ -----------
+----- Calendar -----------
 
 --CREATE PROCEDURE [Calendar].[UpdateDay]
 
@@ -470,18 +460,18 @@ AND TABLE_SCHEMA = 'Sales'
 						, DAY(@date) -- [Day]
 						, FORMAT(@date, 'yyyy-MM') -- [MonthReport]
 						, CASE MONTH(@date) 
-							WHEN 1 THEN '˜˜˜˜˜˜' 
-							WHEN 2 THEN '˜˜˜˜˜˜˜'
-							WHEN 3 THEN '˜˜˜˜'
-							WHEN 4 THEN '˜˜˜˜˜˜'
-							WHEN 5 THEN '˜˜˜'
-							WHEN 6 THEN '˜˜˜˜'
-							WHEN 7 THEN '˜˜˜˜'
-							WHEN 8 THEN '˜˜˜˜˜˜'
-							WHEN 9 THEN '˜˜˜˜˜˜˜˜'
-							WHEN 10 THEN '˜˜˜˜˜˜˜'
-							WHEN 11 THEN '˜˜˜˜˜˜'
-							WHEN 12 THEN '˜˜˜˜˜˜˜'
+							WHEN 1 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' 
+							WHEN 2 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
+							WHEN 3 THEN 'ï¿½ï¿½ï¿½ï¿½'
+							WHEN 4 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
+							WHEN 5 THEN 'ï¿½ï¿½ï¿½'
+							WHEN 6 THEN 'ï¿½ï¿½ï¿½ï¿½'
+							WHEN 7 THEN 'ï¿½ï¿½ï¿½ï¿½'
+							WHEN 8 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
+							WHEN 9 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
+							WHEN 10 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
+							WHEN 11 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
+							WHEN 12 THEN 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
 							END --- [MONTHNAME]
 						, DATEPART(Quarter, @date ) --[Quarter]
 						, DATEPART(dayofyear, @date ) -- [dayofyear]
@@ -509,7 +499,7 @@ WHERE TABLE_NAME = 'CalendarDay'
 
 --===================================================================================
 --____________________________________________________________________________________________________________
------------- ˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜ --------
+------------ check the created tables --------
 USE DataBase2021
 DECLARE @dml AS NVARCHAR(MAX), @COUNT AS INT, @N int, @TABLE_NAME NVARCHAR(100)
 
