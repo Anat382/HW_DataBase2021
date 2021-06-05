@@ -1,43 +1,43 @@
 
 
 --__________________________________#____________________________#__________________________________#_______________________________
--- Создаем базу данных [DataBase2021]
+--    [DataBase2021]
 --/////////////////////////////////////////////
 
 USE master;
-CREATE DATABASE [DataBase2021] --- COLLATE Cyrillic_General можно изменить тип юникода
+CREATE DATABASE [DataBase2021] --- COLLATE Cyrillic_General    
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = DataBase2021, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021.mdf' ,  -- явное указание хранения файла
-	SIZE = 500MB , --- проценты не указывать
+( NAME = DataBase2021, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021.mdf' ,  --    
+	SIZE = 500MB , ---   
 	MAXSIZE = UNLIMITED, 
 	FILEGROWTH = 100MB )
  LOG ON 
-( NAME = DataBase2021_log, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021_log.ldf' ,  --- журнал логов
+( NAME = DataBase2021_log, FILENAME = N'E:\SQL_Developer\DataBase\DataBase2021_log.ldf' ,  ---  
 	SIZE = 500MB , 
 	MAXSIZE = 1GB , 
 	FILEGROWTH = 100MB  )
 GO
 
----  *** при необходимости удаляем 
+---  ***    
 --USE master; 
 --GO 
 --IF DB_ID (N'DataBase2021') IS NOT NULL 
 --	DROP DATABASE DataBase2021; 
 --GO 
 
---Справочник контрагентов
---Справочник услуг
---Справочник регионов
---Справочник сотрудников
---Справочник цен на услуги (загрузочный тип)
---Календарь
---Таблица звонков
---Табица заказов
---Таблица продаж
+-- 
+-- 
+-- 
+-- 
+--    ( )
+--
+-- 
+-- 
+-- 
 
 
------- загружаем данные в БД используя встроенный иструмент импорта неструкрированных файлов
+------          
 --SELECT * FROM [dbo].[Contact]
 --SELECT * FROM [dbo].[Deal]
 --SELECT * FROM [dbo].[EMAIL]
@@ -47,8 +47,8 @@ GO
 --SELECT * FROM [dbo].[TypeProduct]
 --SELECT * FROM [dbo].[WORK_POSITION]
 
---CREATE SCHEMA Sales  -- для продаж
---CREATE SCHEMA Prod  -- спроавоники орг
+--CREATE SCHEMA Sales  --  
+--CREATE SCHEMA Prod  --  
 
 
 --SELECT CONCAT( COLUMN_NAME, ' ', DATA_TYPE, IIF( CHARACTER_MAXIMUM_LENGTH IS NULL, '', CONCAT('(',CHARACTER_MAXIMUM_LENGTH,'),') ) )
@@ -56,9 +56,9 @@ GO
 --WHERE TABLE_NAME = 'Lead'
 
 --________________________________________________________________________________________________________________________
----------- Создание таблицы
+----------  
 
----- Регион -----
+----  -----
 DROP TABLE IF EXISTS  Sales.Region
 CREATE TABLE Sales.Region(
 	ID    int			not null identity(1, 1)  primary key,
@@ -71,7 +71,7 @@ INSERT INTO Sales.Region ( Name)
 SELECT * FROM  Sales.Region
 
 --=======================================
----- Клиенты -----
+----  -----
 DROP TABLE IF EXISTS  Sales.Customers
 CREATE TABLE Sales.Customers(
 	ID			int				not null identity(1, 1)  primary key,
@@ -155,7 +155,7 @@ INSERT INTO Prod.Job ( NAme)
 SELECT * FROM Prod.Job
 
 --============================================================
----- Цены -----
+----  -----
 DROP TABLE IF EXISTS  Sales.Price
 CREATE TABLE Sales.Price(
 	ID		int		not null identity  primary key,
@@ -177,7 +177,7 @@ SELECT * FROM Sales.Price
 --TRUNCATE TABLE Sales.Price
 
 --===================================================================
----- Виды услуг -----
+----   -----
 DROP TABLE IF EXISTS  Sales.TypesOfServices
 CREATE TABLE  Sales.TypesOfServices(
 	ID		int			 not null identity  primary key,
@@ -209,7 +209,7 @@ SELECT  * FROM Sales.TypesOfServices
 --TRUNCATE TABLE Sales.TypesOfServices
 
 --===================================================================
-----  Источники -----
+----   -----
 DROP TABLE IF EXISTS  Sales.Source
 CREATE TABLE  Sales.Source(
 	ID	 int		  not null identity(1, 1)  primary key,
@@ -224,7 +224,7 @@ INSERT INTO Sales.Source ( Name)
 SELECT * FROM Sales.Source
 
 --=================================================================
-----  Статусы -----
+----   -----
 DROP TABLE IF EXISTS  Prod.Status
 CREATE TABLE   Prod.Status(
 	ID	 int		  not null identity(1, 1)  primary key,
@@ -233,15 +233,15 @@ CREATE TABLE   Prod.Status(
 )
 
 INSERT INTO Prod.Status ( Name, Type)
-	VALUES ( 'Брак', 'Lead'),
-		   ('Сконвертирован', 'Lead'),
-		   ('Завешилась', 'Deal'),
-		   ('В работе', 'Deal')
+	VALUES ( '', 'Lead'),
+		   ('', 'Lead'),
+		   ('', 'Deal'),
+		   (' ', 'Deal')
 
 SELECT * FROM  Prod.Status
 
 --=================================================================
------- Продавцы -----
+------  -----
 DROP TABLE IF EXISTS  Prod.Employee
 CREATE TABLE Prod.Employee(
 	ID					int			 not null identity(1, 1)  primary key,
@@ -255,7 +255,7 @@ CREATE TABLE Prod.Employee(
 	BIRTHDAY			date		 not null
 )
 
---SELECT FLOOR(RAND()*(15-5)+5); --- рандом
+--SELECT FLOOR(RAND()*(15-5)+5); --- 
 --SELECT * FROM [dbo].[Emploee]
 
 --UPDATE [dbo].[Emploee] SET ID = c2.[Row]
@@ -282,10 +282,10 @@ WHILE @cc <= @Emploee
 		 DATEADD( day, FLOOR(RAND()*(3650-100)+100), '19850101')
 		 FROM [dbo].[Emploee] e
 		 OUTER APPLY (
-			SELECT TOP 1 Gender , NAME FROM ( VALUES (1, 'Анастасия'), (0, 'Евгений'), (0, 'Александр'), (0, 'Артем'), (1, 'Жанна'), (1, 'Диана'), (1, 'Виктория'), (0, 'Николай'), (0, 'Никита'), (0, 'Сергей'), (1, 'Наталья'),
-				(1, 'Татьяна'), (0, 'Вячеслав'), (0, 'Константин'), (0, 'Евегний'), (0, 'Юрий'), (0, 'Владимир'), (1, 'Ольга'), (0, 'Роман'), (1, 'Алена') 
+			SELECT TOP 1 Gender , NAME FROM ( VALUES (1, ''), (0, ''), (0, ''), (0, ''), (1, ''), (1, ''), (1, ''), (0, ''), (0, ''), (0, ''), (1, ''),
+				(1, ''), (0, ''), (0, ''), (0, ''), (0, ''), (0, ''), (1, ''), (0, ''), (1, '') 
 					) d(Gender, Name)
-			WHERE IIF( RIGHT(e.SECOND_NAME,1) = 'а',1,0)=Gender
+			WHERE IIF( RIGHT(e.SECOND_NAME,1) = '',1,0)=Gender
 			ORDER BY  NEWID()
 			) n 
 		 WHERE e.ID = @cc 
@@ -306,7 +306,7 @@ WHERE TABLE_NAME = 'Employee'
 AND TABLE_SCHEMA = 'Prod'
 
 --=====================================================================
------- Заявки -----
+------  -----
 DROP TABLE IF EXISTS  Sales.Lead
 CREATE TABLE Sales.Lead(
 	Lead_ID		int			not null identity(1, 1)  primary key,
@@ -358,7 +358,7 @@ WHERE TABLE_NAME = 'Lead'
 AND TABLE_SCHEMA = 'Sales'
 
 --==================================================================================
------- Сделки -----
+------  -----
 DROP TABLE IF EXISTS  Sales.Deal
 CREATE TABLE Sales.Deal(
 	Deal_ID		int			not null identity(1, 1) primary key,
@@ -430,7 +430,7 @@ AND TABLE_SCHEMA = 'Sales'
 
 
 --===================================================================================
------ Календарь -----------
+-----  -----------
 
 --CREATE PROCEDURE [Calendar].[UpdateDay]
 
@@ -470,18 +470,18 @@ AND TABLE_SCHEMA = 'Sales'
 						, DAY(@date) -- [Day]
 						, FORMAT(@date, 'yyyy-MM') -- [MonthReport]
 						, CASE MONTH(@date) 
-							WHEN 1 THEN 'Январь' 
-							WHEN 2 THEN 'Февраль'
-							WHEN 3 THEN 'Март'
-							WHEN 4 THEN 'Апрель'
-							WHEN 5 THEN 'Май'
-							WHEN 6 THEN 'Июнь'
-							WHEN 7 THEN 'Июль'
-							WHEN 8 THEN 'Август'
-							WHEN 9 THEN 'Сентябрь'
-							WHEN 10 THEN 'Октябрь'
-							WHEN 11 THEN 'Ноябрь'
-							WHEN 12 THEN 'Декабрь'
+							WHEN 1 THEN '' 
+							WHEN 2 THEN ''
+							WHEN 3 THEN ''
+							WHEN 4 THEN ''
+							WHEN 5 THEN ''
+							WHEN 6 THEN ''
+							WHEN 7 THEN ''
+							WHEN 8 THEN ''
+							WHEN 9 THEN ''
+							WHEN 10 THEN ''
+							WHEN 11 THEN ''
+							WHEN 12 THEN ''
 							END --- [MONTHNAME]
 						, DATEPART(Quarter, @date ) --[Quarter]
 						, DATEPART(dayofyear, @date ) -- [dayofyear]
@@ -509,7 +509,7 @@ WHERE TABLE_NAME = 'CalendarDay'
 
 --===================================================================================
 --____________________________________________________________________________________________________________
------------- Проверка созданных таблиц --------
+------------    --------
 USE DataBase2021
 DECLARE @dml AS NVARCHAR(MAX), @COUNT AS INT, @N int, @TABLE_NAME NVARCHAR(100)
 
